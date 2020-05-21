@@ -176,11 +176,12 @@ def resortObjs(q = None):
             
 def getObjFromLoc(y, x, q = None):
     cur = imgObjects[y][x]
-    if getObjLoc(cur) == (y, x):
-        return cur
-    else:
-        resortObjs(q)
-        return getObjFromLoc(y, x)
+    # if getObjLoc(cur) == (y, x):
+    #     return cur
+    # else:
+    #     resortObjs(q)
+    #     return getObjFromLoc(y, x)
+    return cur
 
 def sortKey(obj):
     xDistFromMid = abs(obj[1] - dim[0]/2.0 + 0.5)
@@ -219,12 +220,9 @@ while not q.empty():
         print("Tried Getting Target and failed")
         break
 
-    try:
-        target['elem'].click()
-    except Exception:
-        if cursorElem.location['x'] >= 0:
-            cursorElem.click()
-        target['elem'].click()
+    if cursorElem.location['x'] >= 0:
+        cursorElem.click()
+    target['elem'].click()
 
     i = 0
     for curImg in imgObjects1dCpy:
